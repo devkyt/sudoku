@@ -4,7 +4,7 @@
 The well-known Sudoku wriiten in C# and .NET. The game combines 5 different techniques to shuffle and create a board. 
 It also has autosolver based on a backtracking algorithm. 
 
-To run the app:
+## Run the App
 ```sh
 git clone https://github.com/devkyt/sudoku.git
 cd sudoku/Sudoku
