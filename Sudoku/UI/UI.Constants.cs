@@ -10,6 +10,10 @@ class Constants {
 
     public const string ErrorMessage = "Couldn't solve from the current state";
 
+    public const string RowDelimiter = "\t__________________________________________________________________";
+
+    public const string ColumnDelimiter = "\t|\t\t   |\t\t\t   |\t\t\t   |";
+
     public static string Title() 
     {
         return @"
@@ -42,12 +46,17 @@ class Constants {
     {
         return ["1. Set value for a cell", 
                 "2. Get a tip", 
-                "3. Autosolve from a current board state",
+                "3. Reset previous choice",
                 "4. Autosolve from a start board state",
                 "5. Reset to start",
                 "6. Change difficulty",
                 "7. Exit"];
 
+    }
+
+    public static string[] RowNames()
+    {
+       return ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"];
     }
 
     public static string WinMessage() 

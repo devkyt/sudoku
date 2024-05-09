@@ -5,7 +5,10 @@ using Sudoku.Game;
 
 class Program {
     static void Main(string[] args) {
+        
         bool play = true;
+        int tmpRow = -1;
+        int tmpColumn = -1;
 
         while (play)
         {   
@@ -28,17 +31,17 @@ class Program {
                     case 1:
                         if (!autoSolver) 
                         {
-                        UI.ShowWinMessage();
-                        session = false;
-                        continue;
+                            UI.ShowWinMessage();
+                            session = false;
+                            continue;
                         };
                         break;
                     case -1:
                         if (!autoSolver) 
                         {
-                        UI.ShowLoseMessage();
-                        session = false;
-                        continue;
+                            UI.ShowLoseMessage();
+                            session = false;
+                            continue;
                         };
                         break;
                 }
@@ -51,20 +54,23 @@ class Program {
                 {
                     case 0:
                         var (row, column, value) = UI.GetCellsValueFromUser(board.playGrid);
+                        (tmpRow, tmpColumn) = (row, column);
                         board.Update(row, column, value);
                         break;
                     case 1:
                         board.GetTip();
                         break;
                     case 2:
-                        bool possible = board.SolveCurrent();
-                        if (!possible) 
-                        {
-                            UI.ShowErrorMessage();
-                            break;
-                        }
-                        autoSolver = true;
+                        if (tmpRow >=0 && tmpColumn >= 0) board.Update(tmpRow, tmpColumn, 0);
                         break;
+                        // bool possible = board.SolveCurrent();
+                        // if (!possible) 
+                        // {
+                        //     UI.ShowErrorMessage();
+                        //     break;
+                        // }
+                        // autoSolver = true;
+                        // break;
                     case 3:
                         board.SolveOrignial();
                         autoSolver = true;

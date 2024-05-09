@@ -23,19 +23,26 @@ class Output {
     }
 
     public static void DisplayGrid(int[,] grid) {
-        Console.WriteLine("\t" + string.Join("\t", ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"]));
+        Console.WriteLine("\t" + string.Join("\t", Constants.RowNames()));
+        Console.WriteLine(Constants.RowDelimiter + "\n");
+
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < grid.GetLength(0); i++) {
             stringBuilder.Append($"R{i+1}\t");
             for (int j = 0; j < grid.GetLength(1); j++) {
-                stringBuilder.Append($"{grid[i, j]}\t");
+                string startDelimiter = j == 0 ? "| " : "";
+                string endDelimiter = (j + 1) % 3 == 0 ? "  |\t" : "\t";
+                stringBuilder.Append(startDelimiter + $"{grid[i, j]}" + endDelimiter);
                 
             }
-            Console.Write(stringBuilder.ToString());
+            Console.Write($"{stringBuilder.ToString()}\n");
+            if ((i + 1) % 3 == 0) Console.WriteLine(Constants.RowDelimiter);
+            if ((i +1) % 9 != 0) Console.WriteLine(Constants.ColumnDelimiter);
+
             stringBuilder.Clear();
-            Console.WriteLine("\n\n\n");
         }
+        Console.WriteLine("\n\n");
     }
 
     public static void DisplayMessage(string message, ConsoleColor color = ConsoleColor.Green)
@@ -76,3 +83,5 @@ class Output {
     }
     
 }
+
+
